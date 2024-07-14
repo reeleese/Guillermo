@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve Guillermo
+After=network.target
+
+[Service]
+User=reeleese
+Group=www-data
+WorkingDirectory=/home/reeleese/Guillermo
+Environment="PATH=/home/reeleese/Guillermo/venv/bin"
+ExecStart=/home/reeleese/Guillermo/venv/bin/gunicorn --workers 3 --bind 0.0.0.0:8000 app:app
+
+[Install]
+WantedBy=multi-user.target
